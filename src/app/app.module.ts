@@ -14,6 +14,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RxjsLearningComponent } from './rxjs-learning/rxjs-learning.component';
 import 'hammerjs';
+import { MenuComponent } from './menu/menu.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -22,7 +24,8 @@ import 'hammerjs';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatListModule
     
   ],
   declarations: [
@@ -31,7 +34,8 @@ import 'hammerjs';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    RxjsLearningComponent
+    RxjsLearningComponent,
+    MenuComponent
   ],
   bootstrap: [ AppComponent ]
 })
