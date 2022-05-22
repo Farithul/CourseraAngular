@@ -7,4 +7,6 @@ export class Dish {
     label: string | undefined;
     price: string | undefined;
     description: string | undefined;
+    comments : any | undefined;
+    
 }
