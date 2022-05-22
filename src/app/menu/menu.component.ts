@@ -5,7 +5,11 @@ import { Dish } from '../Shared/dish';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
+
 export class MenuComponent implements OnInit {
+
+  
+
 
   constructor() { }
 
@@ -56,6 +60,6 @@ export class MenuComponent implements OnInit {
       description: 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms'
     }
    ];
-
+   selectedDish = this.dishes[0];
 
 }
