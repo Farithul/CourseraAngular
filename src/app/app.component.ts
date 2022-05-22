@@ -7,7 +7,7 @@ import{Observable,of,map,first, animationFrames, takeWhile, endWith } from 'rxjs
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Tour of Heroes';
+  title = 'Confusion';
   studentList = ['mark','ram','sita','lisa'];
 students : Observable<string[]> = of(this.studentList);
 
