@@ -8,16 +8,16 @@
 
   <div fxFlex="40">
       
-  <div fxFlex *ngIf="dishes">
-    <mat-card>
+  <div fxFlex>
+    <mat-card *ngIf = 'dish'>
       <mat-card-header>
         <mat-card-title>
-          <h3>{{dishes.name | uppercase}}</h3>
+          <h3>{{dish.name | uppercase}}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src={{dishes.image}} alt={{dishes.name}}>
+      <img mat-card-image src={{dish.image}} alt={{dish.name}}>
       <mat-card-content>
-        <p>{{dishes.description}}
+        <p>{{dish.description}}
         </p>
       </mat-card-content>
       <mat-card-actions>
@@ -29,16 +29,18 @@
   </div>
   
   <div fxFlex="40">
-      
-    <mat-card>
+      <div fxFlex>
+    <mat-card *ngIf = 'dish'>
     <mat-card-header>
       <mat-card-title>
         <h3>Comments</h3>
       </mat-card-title>
+      
     </mat-card-header>
+  
     <mat-grid-list cols="2" *ngFor="let dish of dish">
-     
-      <mat-grid-list cols="2" *ngFor="let comments of dish.comments">
+      
+      <mat-grid-list cols="2" *ngFor="let comments of dish.comment">
         {{comments.comment}}
        <h4>{{comments.rating}}</h4>
        <h4>--{{comments.author}} <label>{{comments.date | date}}</label></h4>
@@ -48,6 +50,7 @@
       </mat-grid-list>
      
     </mat-card>
+  </div>
     </div>
     
   

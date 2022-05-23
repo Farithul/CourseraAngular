@@ -1,3 +1,6 @@
+
+import { comment } from './Comment';
+
 export class Dish {
     id: string | undefined;
     name: string | undefined;
@@ -7,6 +10,6 @@ export class Dish {
     label: string | undefined;
     price: string | undefined;
     description: string | undefined;
-    comments : any | undefined;
+    comment: Comment | any;
     
 }
