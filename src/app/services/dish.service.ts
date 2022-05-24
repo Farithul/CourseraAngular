@@ -12,7 +12,7 @@ export class DishService {
   constructor() { }
 
   getDish(id: any): Dish {
-  
+    
     return DISHES.filter((dish) => (dish.id == id))[0];
   }
 
