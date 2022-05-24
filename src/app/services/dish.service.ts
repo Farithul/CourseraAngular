@@ -11,8 +11,9 @@ export class DishService {
 
   constructor() { }
 
-  getDish(id: string): Dish {
-    return DISHES.filter((dish) => (dish.id === id))[0];
+  getDish(id: any): Dish {
+  
+    return DISHES.filter((dish) => (dish.id == id))[0];
   }
 
   getFeaturedDish(): Dish {
