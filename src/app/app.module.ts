@@ -25,6 +25,11 @@ import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import { LeaderService } from './services/leader.service';
+import { PromotionService } from './services/promotion.service';
+import { DishService } from './services/dish.service';
+import { LoginComponent } from './login/login.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -39,6 +44,7 @@ import { ContactComponent } from './contact/contact.component';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
+    MatDialogModule
     
   ],
   declarations: [
@@ -54,8 +60,14 @@ import { ContactComponent } from './contact/contact.component';
     FooterComponent,
     AboutComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent], 
+   providers: [ LeaderService,PromotionService,DishService],
+   entryComponents: [
+    LoginComponent
+]
+
 })
 export class AppModule { }

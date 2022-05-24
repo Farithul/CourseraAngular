@@ -1,5 +1,15 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-@import './node_modules/font-awesome/scss/font-awesome';
+@import '/node_modules/font-awesome/scss/font-awesome';
+
+// some basic resets 
+
+body { 
+  padding: 0; 
+  margin: 0; 
+  font-family: Roboto, sans-serif; 
+  
+}
 
 $lt-gray: #ddd;
 $background-dark: #512DA8;
@@ -19,21 +29,18 @@ $divider-color:        #BDBDBD;
     padding: $pad-up-down $pad-left-right;
 }
 
-.jumbotron {
-    @include zero-margin(70px,30px);
-    background: $background-light ;
-    color:floralwhite;
-    min-height: 150px;
+
+
+.background-primary {
+    background-color: $background-dark!important;
+  }
+.background-accent {
+    background-color: $accent-color!important;
+  }
+.text-floral-white {
+    color: floralwhite!important;
 }
-
-$background-moredark: #4527A0;
-
-.active {
-    background: $background-moredark;
-    color: white;
-}
-
 
 .flex-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
