@@ -11,12 +11,13 @@ export class LeaderService {
 
   leaders: leader[] = LEADERS;
 
-  getLeaders() {
-    return this.leaders;
-  }
 
+  getLeaders(): Promise<leader[]> {
+    return Promise.resolve(LEADERS);
+  }
   
-  getFeaturedLeader(): leader {
-    return LEADERS.filter((leader) => leader.featured)[0];
+  getFeaturedLeader(): Promise<leader> {
+    return Promise.resolve(LEADERS.filter((leader) => leader.featured)[0]);
+    
   }
 }

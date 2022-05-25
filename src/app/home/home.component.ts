@@ -13,8 +13,8 @@ import { LeaderService } from '../services/leader.service';
 })
 export class HomeComponent implements OnInit {
 
-  dish: Dish | any;
-  promotion: Promotion | any;
+  dish: Dish[] | any;
+  promotion: Promotion[] | any;
   leader: leader | any;
 
   constructor(private dishservice: DishService,
@@ -22,11 +22,20 @@ export class HomeComponent implements OnInit {
     private leaderservice: LeaderService) { }
 
   ngOnInit() : void{
-    this.dish = this.dishservice.getFeaturedDish();
-    this.promotion = this.promotionservice.getFeaturedPromotion();
+
     this.leader = this.leaderservice.getFeaturedLeader();
 
-    console.log(this.promotion);
+
+    
+    this.dishservice.getFeaturedDish()
+    .then(dishes => this.dish = dishes)
+
+    this.promotionservice.getFeaturedPromotion()
+    .then(promo => this.promotion = promo)
+
+    
+    this.leaderservice.getFeaturedLeader()
+    .then(leader => this.leader = leader)
   }
 }
 
