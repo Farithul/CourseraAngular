@@ -33,7 +33,8 @@ export class DishdetailComponent implements OnInit {
  
  this.dish = this.dishservice.getDish(IdFromRoute)
  .then(dish => this.dish = dish);
-console.log(this.dish)
+ 
+
   }
   
   

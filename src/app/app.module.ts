@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -57,6 +58,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule, 
     MatInputModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule
 
 
   ],

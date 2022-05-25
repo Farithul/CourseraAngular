@@ -1,7 +1,7 @@
 
-import { comment } from './Comment';
+import { comment } from '../Shared/comment';
 
-export class Dish {
+export interface Dish {
     id: string | undefined;
     name: string | undefined;
     image: string | undefined;
@@ -10,6 +10,6 @@ export class Dish {
     label: string | undefined;
     price: string | undefined;
     description: string | undefined;
-    comment: Comment | any;
+    comment: comment[] | undefined;
     
 }
