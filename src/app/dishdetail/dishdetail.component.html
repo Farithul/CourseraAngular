@@ -60,8 +60,57 @@
        <h4>--{{comments.author}} <label>--{{comments.date | date}}</label></h4>
       </mat-grid-list>
     
+<br>
 
+<mat-grid-list cols="2" *ngFor="let comments of myObjArray">
+
+ 
+  <h4>{{comments.rating}}</h4>
+  <h4>--{{comments.author}}--{{today | date}}</h4>
+  {{comments.comment}}
+
+</mat-grid-list>
+  
+
+      <form  [formGroup]="feedbackCommentForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+          <mat-form-field class="full-width">
+            <input matInput formControlName="author" placeholder="Author Name"
+             type="text" required>
+            <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+          </mat-form-field>
+        
+        </p>
+       <br>
+       
+       <p>
+        <mat-slider thumbLabel #ratingSize (change)="updateRating($event)" 
+       tickInterval="10"
+        step="1"
+        min="0"
+        max="5"
+        aria-label="units" value="ratingSize" formControlName="rating"></mat-slider>
+  
+        <b class="ratingSize">{{ratingSize.value}}</b>
+  
+    </p>
+
+        <p>
+          <mat-form-field class="full-width">
+            <textarea matInput formControlName="comment" placeholder="Your Comments" 
+            required>
+
+            </textarea>
+            <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+          </mat-form-field>
+        </p>
+        
+
+
+        <button type="submit" [disabled]="!fform.form.valid" mat-button class="background-primary text-floral-white">Submit</button>
+      </form>
       
+
 
     </mat-card>
     </div>

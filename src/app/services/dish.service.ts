@@ -12,7 +12,16 @@ export class DishService {
 
   constructor() { }
 
+  items: Dish[] = [];
   
+  addToComments(Dish: Dish) {
+    this.items.push(Dish);
+  }
+
+  getRecentComments() {
+    return this.items;
+  }
+
   getDishes(): Observable<Dish[]> {
     return of(DISHES).pipe(delay(2000));
   }

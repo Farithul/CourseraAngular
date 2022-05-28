@@ -16,9 +16,39 @@ $background-pale: #D1C4E9;
     @include zero-margin(20px, 0px);
 }
 
+
+
+.background-primary {
+    background-color: $background-dark!important;
+  }
+
+.text-floral-white {
+    color: floralwhite!important;
+}
+mat-slider {
+    width: 300px;
+    color: yellow;
+  }
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.full-width {
+    width: 95%
+}
+
+.half-width {
+    width: 45%
+}
+
+.form-size {
+    width: 75%
+}
 .btn-facebook {color:#fff!important; background-color:#3b5998!important;}
 .btn-google-plus{color:#fff!important;background-color:#dd4b39!important;}
 .btn-youtube{color:#fff!important;background-color:#ff4b39!important;}
 .btn-linkedin{color:#fff!important;background-color:#007bb6!important;}
 .btn-twitter{color:#fff!important;background-color:#55acee!important;}
 .btn-mail{color:#fff!important;background-color:#512DA8!important;}
+
+

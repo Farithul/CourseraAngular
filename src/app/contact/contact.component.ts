@@ -62,7 +62,7 @@ export class ContactComponent implements OnInit {
       }
     }
   }
-
+ 
   formErrors : any = {
     'firstname': '',
     'lastname': '',

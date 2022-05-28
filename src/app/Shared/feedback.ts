@@ -8,4 +8,12 @@ export class Feedback {
     message: string | any;
 };
 
+export class CommentFeedback {
+    author: string | any;
+    comment: string | any;
+    rating: number | any;
+    date : string | any;
+   
+};
+
 export const ContactType = ['None', 'Tel', 'Email'];

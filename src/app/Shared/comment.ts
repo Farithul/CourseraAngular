@@ -3,4 +3,4 @@ export class comment {
     comment: string | any;
     author: string | any;
     date: string | any;
-}
+}           
