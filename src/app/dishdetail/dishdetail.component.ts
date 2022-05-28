@@ -35,6 +35,8 @@ export class DishdetailComponent implements OnInit {
   rating :string | any;
   comment :string | any;
   comments: comment[] | undefined;
+  dishcopy: Dish | any;
+  errMess: string | any;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
@@ -60,7 +62,7 @@ export class DishdetailComponent implements OnInit {
  
  this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
-    .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+    .subscribe(dish => { this.dish = dish;this.dishcopy = dish; this.setPrevNext(dish.id); });
 
 
   }
@@ -137,11 +139,16 @@ export class DishdetailComponent implements OnInit {
 
     this.today = Date.now();
     this.myObjArray.push(this.feedbackCommentForm.value);
-  //this.comments?.push(this.feedbackCommentForm.value);
-  //console.log(this.dish.comments)
-    
-    //console.log(this.myObjArray);
-  //  console.log(JSON.stringify(this.myObjArray));
+
+    this.dishcopy.comments.push(this.feedbackCommentForm.value);
+    this.dishservice.putDish(this.dishcopy).
+   subscribe({
+     next: (dish) => this.dish = dish,
+      error: (errMess) => this.errMess(errMess),
+    complete: () => console.info('complete') 
+ })
+   
+
 this.rating = 5;
     this.feedbackCommentForm.reset({
       author: '',
