@@ -32,7 +32,7 @@ export class DishdetailComponent implements OnInit {
   author :string | any;
   rating :string | any;
   comment :string | any;
-  
+
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
     private location: Location,private fb: FormBuilder) { 
@@ -43,6 +43,7 @@ export class DishdetailComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.rating = 5;
    // First get the dish id from the current route.
   const routeParams = this.route.snapshot.paramMap;
   const IdFromRoute : any= Number(routeParams.get('id'));
