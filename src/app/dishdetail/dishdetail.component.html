@@ -53,30 +53,40 @@
       
     </mat-card-header>
    
-
+    <mat-card>
       <mat-grid-list cols="2" *ngFor="let comments of dish.comment">
         {{comments.comment}}
        <h4>{{comments.rating}}</h4>
        <h4>--{{comments.author}} <label>--{{comments.date | date}}</label></h4>
       </mat-grid-list>
-    
+      <mat-grid-list cols="2" *ngFor="let comments of myObjArray">
+
+
+        <h4>{{comments.rating}}</h4>
+        <h4>--{{comments.author}}--{{today | date}}</h4>
+        {{comments.comment}}
+      
+      </mat-grid-list>
+      
+    </mat-card>
+<br>
 <br>
 
-<mat-grid-list cols="2" *ngFor="let comments of myObjArray">
 
- 
-  <h4>{{comments.rating}}</h4>
-  <h4>--{{comments.author}}--{{today | date}}</h4>
-  {{comments.comment}}
 
-</mat-grid-list>
+<form  [formGroup]="feedbackCommentForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+        
   
-
-      <form  [formGroup]="feedbackCommentForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+<div [hidden]="!fform.form.valid">
+  <h3>preview</h3>
+  <h4>{{rating}}</h4>
+  <h4>--{{author}}</h4>
+  {{comment}}
+</div>
         <p>
           <mat-form-field class="full-width">
             <input matInput formControlName="author" placeholder="Author Name"
-             type="text" required>
+             type="text" required  [(ngModel)]="author">
             <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
           </mat-form-field>
         
@@ -89,16 +99,13 @@
         step="1"
         min="0"
         max="5"
-        aria-label="units" value="ratingSize" formControlName="rating"></mat-slider>
-  
-        <b class="ratingSize">{{ratingSize.value}}</b>
-  
-    </p>
+        aria-label="units" value="ratings" formControlName="rating"  [(ngModel)]="rating"></mat-slider>
+
 
         <p>
           <mat-form-field class="full-width">
             <textarea matInput formControlName="comment" placeholder="Your Comments" 
-            required>
+            required  [(ngModel)]="comment">
 
             </textarea>
             <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>

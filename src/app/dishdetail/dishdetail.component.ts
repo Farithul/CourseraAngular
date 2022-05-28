@@ -22,14 +22,17 @@ export class DishdetailComponent implements OnInit {
 
   feedbackCommentForm: FormGroup | any;
     
- dish: Dish[] | any;
+ dish: any = [];
  CommentFeedback: CommentFeedback[] | any;
  dishIds: string[] | any;
   prev: string | any;
   next: string | any;
   myObjArray :any =[]; 
   today: number | any;
-
+  author :string | any;
+  rating :string | any;
+  comment :string | any;
+  
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
     private location: Location,private fb: FormBuilder) { 
@@ -59,7 +62,7 @@ export class DishdetailComponent implements OnInit {
   }
 
   
-  ratingSize: number = 0;
+  ratingSize: number = 5;
   updateRating(event : any) {
     this.ratingSize = event.value;
   }
