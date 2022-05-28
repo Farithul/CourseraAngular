@@ -8,6 +8,7 @@ import { DISHES } from '../Shared/dishes';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { CommentFeedback } from '../Shared/feedback';
+import { comment } from '../Shared/comment';
 
 
 @Component({
@@ -18,11 +19,11 @@ import { CommentFeedback } from '../Shared/feedback';
 export class DishdetailComponent implements OnInit {
 
   
-  @ViewChild('fform') feedbackFormDirective : any;
+  @ViewChild('fform') feedbackCommentFormDirective : any;
 
   feedbackCommentForm: FormGroup | any;
     
- dish: any = [];
+ dish: Dish[] | any;
  CommentFeedback: CommentFeedback[] | any;
  dishIds: string[] | any;
   prev: string | any;
@@ -32,6 +33,7 @@ export class DishdetailComponent implements OnInit {
   author :string | any;
   rating :string | any;
   comment :string | any;
+  comments: comment[] | undefined;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
@@ -42,6 +44,7 @@ export class DishdetailComponent implements OnInit {
 
 
   ngOnInit(): void {
+
 
     this.rating = 5;
    // First get the dish id from the current route.
@@ -54,7 +57,6 @@ export class DishdetailComponent implements OnInit {
  this.dish = this.dishservice.getDish(IdFromRoute)
  .then(dish => this.dish = dish);
  
-
  this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
     .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
@@ -134,16 +136,19 @@ export class DishdetailComponent implements OnInit {
 
     this.today = Date.now();
     this.myObjArray.push(this.feedbackCommentForm.value);
+  //this.comments?.push(this.feedbackCommentForm.value);
+  //console.log(this.dish.comments)
+    
     //console.log(this.myObjArray);
   //  console.log(JSON.stringify(this.myObjArray));
-
+this.rating = 5;
     this.feedbackCommentForm.reset({
       author: '',
       comment: '',
-      rating :''
+rating : 5,
      
     });
-    this.feedbackFormDirective.resetForm();
+  //  this.feedbackCommentFormDirective.resetForm();
   }
   
   
