@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,ViewChild } from '@angular/core';
+import { Component, OnInit,Input,ViewChild,Inject } from '@angular/core';
 import { DishService } from '../services/dish.service';
 import { Params, ActivatedRoute } from '@angular/router';
 import { JsonPipe, Location } from '@angular/common';
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { CommentFeedback } from '../Shared/feedback';
 import { comment } from '../Shared/comment';
+
 
 
 @Component({
@@ -53,9 +54,9 @@ export class DishdetailComponent implements OnInit {
 
   // Find the dish that correspond with the id provided in route.
  // this.dish = this.dishservice.getDish(IdFromRoute);
- 
- this.dish = this.dishservice.getDish(IdFromRoute)
- .then(dish => this.dish = dish);
+ this.dishservice.getDishes().subscribe((data: Dish[])=>{
+  this.dish = data;
+})  
  
  this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))

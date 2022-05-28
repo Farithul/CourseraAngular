@@ -54,7 +54,7 @@
     </mat-card-header>
    
     <mat-card>
-      <mat-grid-list cols="2" *ngFor="let comments of dish.comment">
+      <mat-grid-list cols="2" *ngFor="let comments of dish.comments">
         {{comments.comment}}
        <h4>{{comments.rating}}</h4>
        <h4>--{{comments.author}} <label>--{{comments.date | date}}</label></h4>
