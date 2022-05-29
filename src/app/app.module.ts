@@ -39,7 +39,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider'; 
 import { HttpClientModule } from '@angular/common/http';
-import { baseURL } from './Shared/baseUrl';
+import { baseURL } from './Shared/baseURL';
 import { HighlightDirective } from './directives/highlight.directive';
 
 

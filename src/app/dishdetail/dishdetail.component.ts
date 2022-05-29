@@ -9,13 +9,16 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { CommentFeedback } from '../Shared/feedback';
 import { comment } from '../Shared/comment';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { visibility } from '../animations/app.animations';
 
 
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+  styleUrls: ['./dishdetail.component.scss'],
+  animations: [visibility()]
 })
 export class DishdetailComponent implements OnInit {
 
@@ -23,7 +26,7 @@ export class DishdetailComponent implements OnInit {
   @ViewChild('fform') feedbackCommentFormDirective : any;
 
   feedbackCommentForm: FormGroup | any;
-    
+  visibility = 'shown';
  dish: Dish[] | any;
  CommentFeedback: CommentFeedback[] | any;
  dishIds: string[] | any;
@@ -61,8 +64,14 @@ export class DishdetailComponent implements OnInit {
 })  
  
  this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
-    this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
-    .subscribe(dish => { this.dish = dish;this.dishcopy = dish; this.setPrevNext(dish.id); });
+    this.route.params.pipe(switchMap((params: Params) => { this.visibility = 'hidden'; return this.dishservice.getDish(params['id']); }))
+    .subscribe(dish => { 
+      this.dish = dish;
+      this.dishcopy = dish; 
+      this.setPrevNext(dish.id);
+       this.visibility = 'shown' ;
+      });
+
 
 
   }
@@ -74,7 +83,10 @@ export class DishdetailComponent implements OnInit {
   }
 
   setPrevNext(dishId:any) {
+  
+   // alert(JSON.stringify(this.dishIds));
     const index = this.dishIds.indexOf(dishId);
+  
     this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length];
     this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length];
   }

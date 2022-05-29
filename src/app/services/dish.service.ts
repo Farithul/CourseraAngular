@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { of,Observable } from 'rxjs';
 import { delay,map,catchError } from 'rxjs/operators';
 import { Dish } from '../Shared/dish';
-import { DISHES } from '../Shared/dishes';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { baseURL } from '../Shared/baseUrl';
+import { baseURL } from '../Shared/baseURL';
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
 
 @Injectable({
@@ -32,8 +31,10 @@ export class DishService {
 
   getDishIds(): Observable<string[] | any> {
    // return of(DISHES.map(dish => dish.id ));
-   return this.getDishes().pipe(map(dishes => dishes.map(dish => dish.id)))
+   return this.getDishes()
+   .pipe(map(dishes => dishes.map(dish => dish.id)))
    .pipe(catchError(this.processHTTPMsgService.handleError));
+   
   }
 
   getDish(id: any): Observable<Dish> {

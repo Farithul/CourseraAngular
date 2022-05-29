@@ -8,7 +8,7 @@
 
     
 
-  <div fxFlex="40" *ngIf = 'dish'>
+  <div fxFlex="40" *ngIf = 'dish' [@visibility]="visibility">
       
   <div fxFlex>
     <mat-card >
@@ -43,7 +43,7 @@
     
   </div>
   
-  <div fxFlex="40" *ngIf = 'dish'>
+  <div fxFlex="40" *ngIf = 'dish' [@visibility]="visibility">
     <div fxFlex>
     <mat-card>
     <mat-card-header>
