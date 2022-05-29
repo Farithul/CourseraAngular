@@ -32,17 +32,21 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() : void{
 
-    this.leader = this.leaderservice.getFeaturedLeader();
+    this.leaderservice.getFeaturedLeader().subscribe((data: any)=>{
+      this.leader = data;
+      //alert(JSON.stringify(this.leader));
+    })
+    
 
     this.dishservice.getFeaturedDish().subscribe((data: any)=>{
       this.dish = data;
     })
-    this.promotionservice.getFeaturedPromotion()
-    .then(promo => this.promotion = promo)
 
     
-    this.leaderservice.getFeaturedLeader()
-    .then(leader => this.leader = leader)
+    this.promotionservice.getFeaturedPromotion().subscribe((data: any)=>{
+      this.promotion = data;
+      
+    })
   }
 }
 

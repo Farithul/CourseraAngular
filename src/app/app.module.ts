@@ -29,6 +29,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
 import { DishService } from './services/dish.service';
+import { FeedbackService } from './services/feedback.service';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -86,7 +87,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     HighlightDirective,
   ],
   bootstrap: [ AppComponent], 
-   providers: [ LeaderService,PromotionService,DishService,
+   providers: [ LeaderService,PromotionService,DishService,FeedbackService,
     {provide: 'baseURL', useValue: baseURL}],
    entryComponents: [
     LoginComponent

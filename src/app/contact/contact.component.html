@@ -5,6 +5,7 @@
   <div fxFlex>
     <div>
         <h3>Contact Us</h3>
+      
         <hr>
     </div>
   </div>
@@ -39,7 +40,9 @@
     <mat-card>
       <div fxFlex fxFlexOffset="20px" class="form-size">
         <h3>Send us your Feedback</h3>
-        <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
+       
+        <div [hidden] = 'isShowForm'>
+       
         <form  [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
           <p>
             <mat-form-field class="half-width">
@@ -80,8 +83,30 @@
               <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
             </mat-form-field>
           </p>
-          <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
+          <div *ngIf = 'isLoader'>
+            <mat-spinner></mat-spinner><h4>Submitting form . . . Please Wait</h4>
+          </div>
+          <button type="submit" [disabled]="!fform.form.valid" mat-button class="background-primary text-floral-white">Submit</button>
         </form>
+        
+      </div>
+
+      <div [hidden] = 'isShowComments'>
+        <h3>Your Submission</h3>
+
+        <mat-card>
+          <mat-grid-list cols="2" *ngFor="let feed of feedbackreturn">
+           <label>First Name :   {{feed.firstname}}</label><br>
+           <label>Last Name  :   {{feed.lastname}}</label><br>
+           <label>Tel.Number :   {{feed.telnum}}</label><br>
+           <label>Email      :   {{feed.email}}</label><br>
+           <label>Contact you? :   {{feed.agree}}</label><br>
+           <label>How? :   {{feed.contacttype}}</label><br>
+           <label>Feedback  :   {{feed.message}}</label><br>
+          </mat-grid-list>
+          </mat-card>
+
+      </div>
       </div>
 
     </mat-card>

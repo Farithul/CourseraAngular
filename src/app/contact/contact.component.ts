@@ -2,6 +2,8 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../Shared/feedback';
 import { flyInOut,expand } from '../animations/app.animations';
+import { DishService } from '../services/dish.service';
+import { FeedbackService } from '../services/feedback.service';
 
 @Component({
   selector: 'app-contact',
@@ -22,15 +24,25 @@ export class ContactComponent implements OnInit {
 
   feedbackForm: FormGroup | any;
   feedback: Feedback | any;
+  feedbackreturn: any = [];
   contactType = ContactType;
-  
+  errMess: string | any;
+  isLoader: string | any;
+  isShowForm : string | any;
+  isShowComments : string | any;
 
 
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder,private FeedbackService : FeedbackService) {
     this.createForm();
   }
 
   ngOnInit(): void {
+    this.isLoader = '';
+    this.isShowComments = true;
+    this.isShowForm = false;
+   
+  
   }
   
   createForm() {
@@ -102,18 +114,46 @@ export class ContactComponent implements OnInit {
 
   
   onSubmit() {
+    
+    this.isLoader = 'true';
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
-    this.feedbackForm.reset({
-      firstname: '',
-      lastname: '',
-      telnum: '',
-      email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
-    });
-    this.feedbackFormDirective.resetForm();
+   // console.log(this.feedback);
+    this.FeedbackService.SubmitFeedback(this.feedback).
+    subscribe({
+      next: (feedback : any[]) => this.feedback = feedback,
+       error: (errMess) => this.errMess(errMess),
+     complete: () => setTimeout(() => {
+
+      this.feedbackreturn = Array.of(this.feedback);
+      console.log(this.feedbackreturn);
+      this.isLoader = '';
+      this.isShowComments = false;
+      this.isShowForm = true;
+      this.feedbackForm.reset({
+        firstname: '',
+        lastname: '',
+        telnum: '',
+        email: '',
+        agree: false,
+        contacttype: 'None',
+        message: '',
+        
+      });
+      this.feedbackFormDirective.resetForm();
+     }, 2000)
+
+  })   
+
+
+setTimeout(() => {
+  this.isShowComments = true;
+  this.isShowForm = false;
+  
+}, 5000);  
+
+//console.log(this.feedbackreturn);
+
+    
   }
   
 }
