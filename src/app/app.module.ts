@@ -40,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider'; 
 import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './Shared/baseUrl';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { baseURL } from './Shared/baseUrl';
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective,
   ],
   bootstrap: [ AppComponent], 
    providers: [ LeaderService,PromotionService,DishService,
